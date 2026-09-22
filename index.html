@@ -1,0 +1,315 @@
+<html>
+
+<head lang="en">
+	<meta charset="utf-8">
+	<title>Wardrobes</title>
+	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+</head>
+
+<body>
+	<div class="save-img-from-canvas">
+		<button class="save-img-from-canvas__button" id="btn">save canvas to img</button>
+		<div>saved img is show below</div>
+		<form action="" id="formImg" class="form-save-img">
+			<div class="save-img-from-canvas__wrapper-img" id="ctn">
+				<img class="save-img-from-canvas__img" id="img" data-name="">
+			</div>
+			<!-- <button class="form-save-img__button">Отправить картинку</button> -->
+		</form>
+	</div>
+	<canvas id="ctx2d" width="100" height="100" style="height: 0;"></canvas>
+	<header>
+		<select name=wdleft id=wdleft onchange='chgobj("left");' class=choosewardrobe disabled>
+		</select>
+		&nbsp;
+		<select name=wdmid id=wdmid onchange='chgobj("mid");' class=choosewardrobe disabled>
+		</select>
+		&nbsp;
+		<select name=wdright id=wdright onchange='chgobj("right");' class=choosewardrobe disabled>
+		</select>
+		&nbsp;
+		<select name=wdheight id=wdheight onchange='chgobj("height");' class=choosewardrobe>
+			<option selected>100</option>
+			<option>140</option>
+			<option>141</option>
+			<option>142</option>
+			<option>143</option>
+			<option>144</option>
+			<option>145</option>
+			<option>146</option>
+			<option>147</option>
+			<option>148</option>
+			<option>149</option>
+
+			<option>150</option>
+			<option>151</option>
+			<option>152</option>
+			<option>153</option>
+			<option>154</option>
+			<option>155</option>
+			<option>156</option>
+			<option>157</option>
+			<option>158</option>
+			<option>159</option>
+
+			<option>160</option>
+			<option>161</option>
+			<option>162</option>
+			<option>163</option>
+			<option>164</option>
+			<option>165</option>
+			<option>166</option>
+			<option>167</option>
+			<option>168</option>
+			<option>169</option>
+
+			<option>170</option>
+			<option>171</option>
+			<option>172</option>
+			<option>173</option>
+			<option>174</option>
+			<option>175</option>
+			<option>176</option>
+			<option>177</option>
+			<option>178</option>
+			<option>179</option>
+
+			<option>180</option>
+			<option>181</option>
+			<option>182</option>
+			<option>183</option>
+			<option>184</option>
+			<option>185</option>
+			<option>186</option>
+			<option>187</option>
+			<option>188</option>
+			<option>189</option>
+
+			<option>190</option>
+			<option>191</option>
+			<option>192</option>
+			<option>193</option>
+			<option>194</option>
+			<option>195</option>
+			<option>196</option>
+			<option>197</option>
+			<option>198</option>
+			<option>199</option>
+
+			<option>200</option>
+			<option>201</option>
+			<option>202</option>
+			<option>203</option>
+			<option>204</option>
+			<option>205</option>
+			<option>206</option>
+			<option>207</option>
+			<option>208</option>
+			<option>209</option>
+
+			<option>240</option>
+			<option>255</option>
+			<option>265</option>
+
+		</select>
+		&nbsp;
+		<select name=wdmove id=wdmove onchange='chgobj("move");' class=choosewardrobe>
+			<option selected>stop</option>
+			<option>look</option>
+		</select>
+
+		&nbsp;
+		<input type=button value='👣🔼' onclick='chgobj("closer");' class=actbtn title='Подойти ближе'>
+		&nbsp;
+		<input type=button value='👣🔽' onclick='chgobj("farther");' class=actbtn title='Отойти дальше'>
+		&nbsp;
+		<input type=button value='👣←' onclick='chgobj("stepleft");' class=actbtn title='Шагнуть влево'>
+		&nbsp;
+		<input type=button value='👣→' onclick='chgobj("stepright");' class=actbtn title='Шагнуть вправо'>
+		&nbsp;
+		<input type=button value='👀🔝' onclick='chgobj("lookup");' class=actbtn title='Смотреть выше'>
+		&nbsp;
+		<input type=button value='👀🔻' onclick='chgobj("lookdown");' class=actbtn title='Смотреть ниже'>
+		&nbsp;
+		<input type=button value='💡' onclick='chgobj("light");' class=actbtn title='Свет'>
+		&nbsp;
+		<input type=button value='🗿' onclick='chgobj("paint");' class=actbtn title='Покрасить стену'>
+		&nbsp;
+		<input type=button value='🔨' onclick='chgobj("floor");' class=actbtn title='Поменять пол'>
+		&nbsp;
+		<input type=button value='🔃L' onclick='chgobj("rotateleft");' class=actbtn title='Повернуть левый'>
+		&nbsp;
+		<input type=button value='🔃C' onclick='chgobj("rotatemid");' class=actbtn title='Повернуть средний'>
+		&nbsp;
+		<input type=button value='🔃R' onclick='chgobj("rotateright");' class=actbtn title='Повернуть правый'>
+		&nbsp;
+		<input type=button value='💸' onclick='chgobj("showsofa");' class=actbtn title='Заплатить побольше'>
+	</header>
+
+	<div id="container"></div>
+
+	<script>
+		function chgobj(part) {
+			const evt = new Event("chg" + part);
+			document.dispatchEvent(evt);
+		}		
+	</script>
+
+	<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+
+	<script type="importmap">
+		  {
+			"imports": {
+			  "three": "https://unpkg.com/three/build/three.module.js",
+			  "three/addons/": "https://unpkg.com/three/examples/jsm/"
+			}
+		  }
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.143.0/build/three.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/three@0.143.0/examples/js/controls/OrbitControls.js"></script>
+	<script type="module" src="main.js"></script>
+	<script>
+		let snap = false;
+
+		const capture = () => {
+			const cav = document.querySelector('#container canvas');
+			const base64 = cav.toDataURL('img/png');
+			document.querySelector('#img').src = base64;
+		};
+
+		// document.querySelector("#file").addEventListener('change', async (e) => {
+		// 	console.log(e.target.files);
+
+		// 	const formData = new FormData()
+		// 	formData.append('file', e.target.files[0])
+
+		// 	const response = await fetch('http://localhost:3001/', {
+		// 		method: "POST",
+		// 		body: formData
+		// 	}).then(response => response.json())
+		// 		.then(data => console.log(data))
+		// })
+
+
+
+		document.querySelector("#formImg").addEventListener('submit', async (e) => {
+			e.preventDefault()
+
+			const valueLeftWardrobes = document.querySelector('#wdleft').value
+			const valueMiddleWardrobes = document.querySelector('#wdmid').value
+			const valueRightWardrobes = document.querySelector('#wdright').value
+
+			// const formData2 = Object.fromEntries(new FormData(e.target))
+
+			const base64Response = await fetch(document.querySelector('#img').src);
+			const blob = await base64Response.blob();
+
+			const formData = new FormData();
+			formData.append('file', blob,
+				`(${valueLeftWardrobes})(${valueMiddleWardrobes})(${valueRightWardrobes}).png`
+			);
+			console.log(blob);
+			const response = await fetch('http://localhost:3001/', {
+				method: "POST",
+				// headers: {
+				// 	'Content-Type': 'multipart/form-data',
+				// 	'Content-Length': blob.length,
+				// },
+				body: formData
+			}).then(response => response.json())
+				.then(data => console.log(data))
+
+		})
+
+		document.getElementById('btn').addEventListener('click', () => { snap = true; });
+
+		init2D()
+
+		function init2D() {
+			// 2d context save code
+			var cav = document.querySelector('#ctx2d'),
+				ctx = cav.getContext('2d')
+			ctx.beginPath();
+			ctx.arc(20, 20, 50, 0, Math.PI);
+			ctx.stroke();
+			ctx.closePath()
+			var base64 = cav.toDataURL()
+			document.querySelector('#img').src = base64
+		}
+
+		const container = document.getElementById('container');
+
+		let renderer, scene, camera, stats;
+		let object = new THREE.Object3D(),
+			mesh, sprite
+
+		window.addEventListener('load', init);
+
+		function init() {
+			// three.js code
+			renderer = new THREE.WebGLRenderer({
+				antialias: true,
+				// preserveDrawingBuffer: true,
+			});
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			// container.appendChild(renderer.domElement);
+
+			scene = new THREE.Scene();
+
+			camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+			camera.position.set(50, 50, 50)
+
+			scene.add(new THREE.AmbientLight(0xdddddd));
+
+			controls = new THREE.OrbitControls(camera, renderer.domElement)
+
+			var mesh = new THREE.Mesh(
+				new THREE.PlaneBufferGeometry(50, 50),
+				new THREE.ShaderMaterial({
+					vertexShader: `
+				  void main() {
+				  gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+				  }
+				  `,
+					fragmentShader: `
+				  void main() {
+					  gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+				  }
+			  `,
+				})
+			)
+			scene.add(mesh)
+
+			scene.add(
+				new THREE.Mesh(
+					new THREE.BoxBufferGeometry(20, 20, 20),
+					new THREE.MeshBasicMaterial({
+						color: 0x0000ff
+					})
+				)
+			)
+
+
+			animate();
+
+		}
+
+
+		function animate() {
+			requestAnimationFrame(animate);
+
+			renderer.render(scene, camera);
+			if (snap) {
+				capture();
+				snap = false;
+			}
+		}
+
+	</script>
+
+</body>
+
+</html>

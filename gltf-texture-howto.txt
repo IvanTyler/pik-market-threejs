@@ -1,0 +1,51 @@
+1) samplers (#1)
+
+{
+    "magFilter" : 9729,
+    "minFilter" : 9987,
+    "wrapS" : 33648,
+    "wrapT" : 33648
+  }
+  
+  
+2) images (#1)
+	    {
+			"uri" : "pik-market.png"
+		}
+		
+
+3) texture (sampler + image source) (#2)
+  {
+    "sampler" : 1,
+    "source" : 1
+  }	
+  
+
+
+4) material (#4)
+{
+    "pbrMetallicRoughness" : {
+      "baseColorTexture" : {
+        "index" : 2
+      },
+      "metallicFactor" : 0.0,
+      "roughnessFactor" : 1.0
+    }
+  }	
+  
+5) use this material in a mesh:
+		{
+			"name":"Mesh.019",
+			"primitives":[
+				{
+					"attributes":{
+						"POSITION":4,
+						"TEXCOORD_0":5,
+						"NORMAL":6
+					},
+					"indices":7,
+					"material": 4
+				}
+			]
+		}
+  
